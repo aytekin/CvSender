@@ -8,15 +8,15 @@ namespace CVSender
 {
     public static class Email
     {
-        public static void sendEmail(string msg, string sub)
+        public static void sendEmail(string msg, string sub,string to)
         {
             var fromAddress = new MailAddress("aytekinerlale1@gmail.com", "Aytekin Erlale");
-            var toAddress = new MailAddress("aytekinerlale@gmail.com");
-            const string fromPassword = "";
+            var toAddress = new MailAddress(to);
+            const string fromPassword = "pass";
 
 
             using (MailMessage mail = new MailMessage())
-            {111
+            {
                 mail.From = new MailAddress("email@gmail.com");
                 mail.To.Add(toAddress);
                 mail.Subject = sub;
@@ -29,7 +29,7 @@ namespace CVSender
                     smtp.Credentials = new NetworkCredential(fromAddress.Address, fromPassword);
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
-                    Console.WriteLine("Message Send");
+                    Console.WriteLine("Message Send to " + mail.To[0].Address.ToString());
                 }
             }
         }

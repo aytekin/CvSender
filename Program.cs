@@ -13,14 +13,18 @@ namespace CVSender
 
             List<string> brandList;
 
-            //brandList = await FetchData.FetchDataFromUrlAsync(Url);
+            const string msg = "Merhaba ben Aytekin Erlale,\r\n" +
+                "Sakarya Üniversitesi Bilgisayar Mühendisliği 4.Sınıf Öğrencisiyim." +
+                "İş başvurusu için mail atıyorum kişisel cv'm ektedir.";
 
-            //foreach (var item in brandList)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            brandList = await FetchData.FetchDataFromUrlAsync(Url);
+            brandList.Add("aytekinerlale@gmail.com");
 
-            Email.sendEmail("Merhaba ben Aytekin Erlale,\r\nİş başvurusu için mail atıyorum kişisel cv'm ektedir.", "Kısmi zamanlı iş başvurusu");
+            foreach (var item in brandList)
+            {
+                Email.sendEmail(msg, "Kısmi zamanlı iş başvurusu", item);
+            }
+
 
 
         }
